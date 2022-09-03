@@ -1,6 +1,6 @@
 import 'package:flutter_advanced/app/constants.dart';
 import 'package:flutter_advanced/data/response/responses.dart';
-import 'package:flutter_advanced/domain/model.dart';
+import 'package:flutter_advanced/domain/model/model.dart';
 import 'package:flutter_advanced/app/extensions.dart';
 
 extension CustomerResponseMapper on CustomerResponse? {
