@@ -15,6 +15,7 @@ class SliderViewObject {
   SliderViewObject(this.sliderObject, this.numOfSlides, this.currentIndex);
 }
 
+// login model
 class Customer {
   String id;
   String name;

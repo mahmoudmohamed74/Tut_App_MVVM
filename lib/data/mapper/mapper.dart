@@ -3,6 +3,7 @@ import 'package:flutter_advanced/data/response/responses.dart';
 import 'package:flutter_advanced/domain/model/model.dart';
 import 'package:flutter_advanced/app/extensions.dart';
 
+// transform response data came from API{JSON} to nonNullable data for storting into model
 extension CustomerResponseMapper on CustomerResponse? {
   Customer toDomain() {
     return Customer(
