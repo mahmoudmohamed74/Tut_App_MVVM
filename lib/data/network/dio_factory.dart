@@ -1,7 +1,9 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, avoid_print
 
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_advanced/app/constants.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 const String APPLICATION_JSON = "application/json";
 const String CONTENT_TYPE = "content-type";
@@ -28,6 +30,15 @@ class DioFactory {
       sendTimeout: _timeOut,
     );
 
+    if (!kReleaseMode) {
+      dio.interceptors.add(
+        PrettyDioLogger(
+          requestHeader: true,
+          responseHeader: true,
+          requestBody: true,
+        ),
+      );
+    }
     return dio;
   }
 }
