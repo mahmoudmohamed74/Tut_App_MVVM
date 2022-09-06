@@ -11,4 +11,11 @@ class AppStrings {
   static const onBoardingSubTitle4 = "onBoardingSubTitle# 4";
 
   static const skip = "Skip";
+  static const username = "User Name";
+  static const password = "Password";
+  static const usernameError = "Please Enter Your User Name";
+  static const passwordError = "Please Enter Your Password";
+  static const login = "Login";
+  static const forgetPassword = "Forget password";
+  static const registerText = "Not a member ? Sign up";
 }
