@@ -1,7 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
+import 'package:flutter_advanced/domain/usecase/login_usecase.dart';
 import 'package:flutter_advanced/presentation/base/base_view_model.dart';
 import 'package:flutter_advanced/presentation/common/freezed_data_classes.dart';
+//****************************  lec 71 important****************************
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -11,6 +15,10 @@ class LoginViewModel extends BaseViewModel
       StreamController<String>.broadcast();
 
   var loginObject = LoginObject("", ""); // store data
+
+  final LoginUseCase _loginUseCase;
+  LoginViewModel(this._loginUseCase);
+
   // inputs
   @override
   void dispose() //  ensure closing controllers
@@ -45,9 +53,17 @@ class LoginViewModel extends BaseViewModel
   }
 
   @override
-  login() {
-    // TODO: implement login
-    throw UnimplementedError();
+  login() async {
+    (await _loginUseCase.execute(
+            LoginUseCaseInput(loginObject.userName, loginObject.password)))
+        .fold(
+      (failure) => {
+        print(failure.message),
+      },
+      (data) => {
+        print(data.customer?.name),
+      },
+    );
   }
 
 // outputs
