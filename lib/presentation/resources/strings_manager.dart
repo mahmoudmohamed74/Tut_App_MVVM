@@ -20,4 +20,7 @@ class AppStrings {
   static const registerText = "Not a member ? Sign up";
 
   static const loading = "Loading...";
+
+  static const retryAgain = "Retry Again";
+  static const ok = "Ok";
 }
