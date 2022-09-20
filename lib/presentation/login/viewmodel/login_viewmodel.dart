@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter_advanced/domain/usecase/login_usecase.dart';
 import 'package:flutter_advanced/presentation/base/base_view_model.dart';
 import 'package:flutter_advanced/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer.dart';
 import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer_impl.dart';
 //****************************  lec 71 important****************************
 
@@ -66,14 +67,19 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async {
+    inputState.add(
+      LoadingState(stateRendererType: StateRendererType.popupLoadingState),
+    );
     (await _loginUseCase.execute(
             LoginUseCaseInput(loginObject.userName, loginObject.password)))
         .fold(
       (failure) => {
-        print(failure.message),
+        inputState.add(
+          ErrorState(StateRendererType.popupErrorState, failure.message),
+        ),
       },
       (data) => {
-        print(data.customer?.name),
+        inputState.add(ContentState()),
       },
     );
   }
