@@ -1,0 +1,4 @@
+el viewModel hy call api (auth or failure)
+give order to view to show 
+view call stateRendImpl to chose state 
+stateRendImpl call stateRend to collect ui to present

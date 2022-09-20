@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter_advanced/domain/usecase/login_usecase.dart';
 import 'package:flutter_advanced/presentation/base/base_view_model.dart';
 import 'package:flutter_advanced/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer_impl.dart';
 //****************************  lec 71 important****************************
 
 class LoginViewModel extends BaseViewModel
@@ -26,6 +27,7 @@ class LoginViewModel extends BaseViewModel
   @override
   void dispose() //  ensure closing controllers
   {
+    super.dispose();
     _userNameStreamController.close();
     _passwordStreamController.close();
     _areInputsValidStreamController.close();
@@ -33,7 +35,8 @@ class LoginViewModel extends BaseViewModel
 
   @override
   void start() {
-    // TODO: implement start
+    // view model tell view  to show content state
+    inputState.add(ContentState());
   }
 
   @override
