@@ -85,16 +85,15 @@ extension FlowStateExtension on FlowState {
         }
       case ErrorState:
         {
+          // fixing code error
           dismissDialog(context);
-
-          if (getStateRendererType() ==
-              StateRendererType.fullScreenErrorState) {
-            // show popup
+          if (getStateRendererType() == StateRendererType.popupErrorState) {
+            // show popup error
             showPopup(context, getStateRendererType(), getMessage());
-            // show content
+            // show content ui of the screen
             return contentScreenWidget;
           } else {
-            // full screen
+            // full screen error state
             return StateRenderer(
               message: getMessage(),
               stateRendererType: getStateRendererType(),
@@ -137,7 +136,7 @@ extension FlowStateExtension on FlowState {
     StateRendererType stateRendererType,
     String message,
   ) {
-    WidgetsBinding.instance?.addPostFrameCallback(
+    WidgetsBinding.instance.addPostFrameCallback(
       (_) => showDialog(
         context: context,
         builder: (BuildContext context) => StateRenderer(
