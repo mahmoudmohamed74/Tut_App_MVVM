@@ -41,3 +41,12 @@ extension AuthenticationResponseMapper on AuthenticationResponse? {
 // ?? "" => this 3shan lo f2dy
 // orEmpty()\orZero() var 3shan lo f2dy
 }
+
+extension ForgotPasswordResponseMapper on ForgotPasswordResponse? {
+  String toDomain() {
+    return this?.support?.orEmpty() ?? Constants.empty;
+  }
+
+// ?? "" => this 3shan lo f2dy
+// orEmpty()\orZero() var 3shan lo f2dy
+}

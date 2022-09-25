@@ -63,6 +63,23 @@ class AuthenticationResponse extends BaseResponse {
   Map<String, dynamic> toJson() => _$AuthenticationResponseToJson(this);
 }
 
+@JsonSerializable()
+class ForgotPasswordResponse extends BaseResponse {
+  @JsonKey(name: 'support')
+  String? support;
+
+  ForgotPasswordResponse(this.support);
+
+// toJson
+  Map<String, dynamic> toJson() => _$ForgotPasswordResponseToJson(this);
+
+//fromJson
+  factory ForgotPasswordResponse.fromJson(Map<String, dynamic> json) =>
+      _$ForgotPasswordResponseFromJson(json);
+}
+
+
+
 
 //  flutter pub run build_runner clean ****remove every generated file *****
 //  flutter pub run build_runner build --delete-conflicting-outputs

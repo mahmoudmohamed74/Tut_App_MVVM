@@ -178,7 +178,7 @@ class _LoginViewState extends State<LoginView> {
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         onPressed: () {
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                             context,
                             Routes.forgotPasswordRoute,
                           );
@@ -190,7 +190,7 @@ class _LoginViewState extends State<LoginView> {
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         onPressed: () {
-                          Navigator.pushReplacementNamed(
+                          Navigator.pushNamed(
                             context,
                             Routes.registerRoute,
                           );
