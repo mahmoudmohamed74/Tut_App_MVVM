@@ -12,6 +12,7 @@ enum StateRendererType {
 
   popupLoadingState,
   popupErrorState,
+  popupSuccessState,
 
 // full screen states
 
@@ -46,30 +47,50 @@ class StateRenderer extends StatelessWidget {
     switch (stateRendererType) {
       case StateRendererType.popupLoadingState:
         return _getPopUpDialog(
-            context, [_getAnimatedImage(JsonAssets.loading)]);
+          context,
+          [_getAnimatedImage(JsonAssets.loading)],
+        );
       case StateRendererType.popupErrorState:
-        return _getPopUpDialog(context, [
-          _getAnimatedImage(JsonAssets.error),
-          _getMessage(message),
-          _getRetryButton(AppStrings.ok, context),
-        ]);
-
+        return _getPopUpDialog(
+          context,
+          [
+            _getAnimatedImage(JsonAssets.error),
+            _getMessage(message),
+            _getRetryButton(AppStrings.ok, context),
+          ],
+        );
+      case StateRendererType.popupSuccessState:
+        return _getPopUpDialog(
+          context,
+          [
+            _getAnimatedImage(JsonAssets.success),
+            _getMessage(title),
+            _getMessage(message),
+            _getRetryButton(AppStrings.ok, context),
+          ],
+        );
       case StateRendererType.fullScreenLoadingState:
-        return _getItemsColumn([
-          _getAnimatedImage(JsonAssets.loading),
-          _getMessage(message),
-        ]);
+        return _getItemsColumn(
+          [
+            _getAnimatedImage(JsonAssets.loading),
+            _getMessage(message),
+          ],
+        );
       case StateRendererType.fullScreenErrorState:
-        return _getItemsColumn([
-          _getAnimatedImage(JsonAssets.loading),
-          _getMessage(message),
-          _getRetryButton(AppStrings.retryAgain, context),
-        ]);
+        return _getItemsColumn(
+          [
+            _getAnimatedImage(JsonAssets.loading),
+            _getMessage(message),
+            _getRetryButton(AppStrings.retryAgain, context),
+          ],
+        );
       case StateRendererType.fullScreenEmptyState:
-        return _getItemsColumn([
-          _getAnimatedImage(JsonAssets.empty),
-          _getMessage(message),
-        ]);
+        return _getItemsColumn(
+          [
+            _getAnimatedImage(JsonAssets.empty),
+            _getMessage(message),
+          ],
+        );
       case StateRendererType.contentState:
         return Container();
       default:
