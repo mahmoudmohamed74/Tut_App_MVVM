@@ -5,6 +5,8 @@ import 'package:flutter_advanced/app/functions.dart';
 import 'package:flutter_advanced/domain/usecase/register_usecase.dart';
 import 'package:flutter_advanced/presentation/base/base_view_model.dart';
 import 'package:flutter_advanced/presentation/common/freezed_data_classes.dart';
+import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer.dart';
+import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:flutter_advanced/presentation/resources/strings_manager.dart';
 
 class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, RegisterViewModelOutput {
@@ -130,9 +132,33 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
   }
 
   @override
-  register() {
-    // TODO: implement register
-    throw UnimplementedError();
+  register() async {
+    // 1 show loading state
+    // 2 execute func
+    inputState.add(
+      LoadingState(stateRendererType: StateRendererType.popupLoadingState),
+    );
+    (await _registerUseCase.execute(
+      RegisterUseCaseInput(
+        registerObject.userName,
+        registerObject.countryMobileCode,
+        registerObject.mobileNumber,
+        registerObject.email,
+        registerObject.password,
+        registerObject.profilePicture,
+      ),
+    ))
+        .fold(
+      (failure) => {
+        inputState.add(
+          ErrorState(StateRendererType.popupErrorState, failure.message),
+        ),
+      },
+      (data) {
+        inputState.add(ContentState());
+        // isUserLoggedInSuccessfullyStreamController.add(true);
+      },
+    );
   }
 
   // --output
