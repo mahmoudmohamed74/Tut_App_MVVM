@@ -5,15 +5,13 @@ import 'package:flutter_advanced/domain/model/model.dart';
 import 'package:flutter_advanced/domain/repository/repository.dart';
 import 'package:flutter_advanced/domain/usecase/base_usecase.dart';
 
-class RegisterUseCase
-    implements BaseUseCase<RegisterUseCaseInput, Authentication> {
+class RegisterUseCase implements BaseUseCase<RegisterUseCaseInput, Authentication> {
   final Repository _repository;
 
   RegisterUseCase(this._repository);
 
   @override
-  Future<Either<Failure, Authentication>> execute(
-      RegisterUseCaseInput input) async {
+  Future<Either<Failure, Authentication>> execute(RegisterUseCaseInput input) async {
     return await _repository.register(
       RegisterRequest(
         input.userName,

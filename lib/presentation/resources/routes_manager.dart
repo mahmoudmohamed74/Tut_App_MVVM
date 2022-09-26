@@ -4,7 +4,7 @@ import 'package:flutter_advanced/presentation/forgot_password/view/forgot_passwo
 import 'package:flutter_advanced/presentation/login/view/login_view.dart';
 import 'package:flutter_advanced/presentation/main/main_view.dart';
 import 'package:flutter_advanced/presentation/onboarding/view/onboarding_view.dart';
-import 'package:flutter_advanced/presentation/register/register_view.dart';
+import 'package:flutter_advanced/presentation/register/view/register_view.dart';
 import 'package:flutter_advanced/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced/presentation/splash/splash_view.dart';
 import 'package:flutter_advanced/presentation/store_details/store_details_view.dart';
