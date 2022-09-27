@@ -12,10 +12,13 @@ class AppStrings {
 
   static const skip = "Skip";
   static const username = "User Name";
+  static const mobileNumber = "Mobile number";
   static const password = "Password";
+  static const profilePicture = "Profile picture";
   static const usernameError = "Please Enter Your User Name";
   static const passwordError = "Please Enter Your Password";
   static const login = "Login";
+  static const register = "Register";
   static const forgetPassword = "Forget password";
   static const registerText = "Not a member ? Sign up";
 
@@ -31,4 +34,7 @@ class AppStrings {
   static const String success = "Success";
   static const String userNameInvalid = "user name must be at least 8 characters ";
   static const String invalidPassword = "Password must be at least 6 characters ";
+  static const String alreadyHaveAccount = "Already have an account? Login";
+  static const photoGallery = "Photo from galley";
+  static const photoCamera = "Photo from camera";
 }

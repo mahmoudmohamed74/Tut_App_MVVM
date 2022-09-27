@@ -32,15 +32,16 @@ class _LoginViewState extends State<LoginView> {
     _passwordController.addListener(
       () => _viewModel.setPassword(_passwordController.text),
     );
-    _viewModel.isUserLoggedInSuccessfullyStreamController.stream
-        .listen((isLoggedIn) {
-      if (isLoggedIn) {
-        SchedulerBinding.instance.addPostFrameCallback((_) {
-          _appPreferences.setUserLoggedIn();
-          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
-        });
-      }
-    });
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen(
+      (isLoggedIn) {
+        if (isLoggedIn) {
+          SchedulerBinding.instance.addPostFrameCallback((_) {
+            _appPreferences.setUserLoggedIn();
+            Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+          });
+        }
+      },
+    );
   }
 
   @override
@@ -103,9 +104,7 @@ class _LoginViewState extends State<LoginView> {
                       decoration: InputDecoration(
                         hintText: AppStrings.username,
                         labelText: AppStrings.username,
-                        errorText: (snapshot.data ?? true)
-                            ? null
-                            : AppStrings.usernameError,
+                        errorText: (snapshot.data ?? true) ? null : AppStrings.usernameError,
                       ),
                     );
                   },
@@ -128,9 +127,7 @@ class _LoginViewState extends State<LoginView> {
                       decoration: InputDecoration(
                         hintText: AppStrings.password,
                         labelText: AppStrings.password,
-                        errorText: (snapshot.data ?? true)
-                            ? null
-                            : AppStrings.passwordError,
+                        errorText: (snapshot.data ?? true) ? null : AppStrings.passwordError,
                       ),
                     );
                   },

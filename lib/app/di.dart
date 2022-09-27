@@ -13,6 +13,7 @@ import 'package:flutter_advanced/presentation/forgot_password/viewmodel/forgot_p
 import 'package:flutter_advanced/presentation/login/viewmodel/login_viewmodel.dart';
 import 'package:flutter_advanced/presentation/register/viewmodel/register_viewmodel.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -89,5 +90,6 @@ initRegisterModule() {
     instance.registerFactory<RegisterViewModel>(
       () => RegisterViewModel(instance()),
     );
+    instance.registerFactory<ImagePicker>(() => ImagePicker());
   }
 }

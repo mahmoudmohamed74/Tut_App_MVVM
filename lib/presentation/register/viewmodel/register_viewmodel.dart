@@ -1,6 +1,6 @@
 import 'dart:async';
+import 'dart:io';
 
-import 'package:analyzer/file_system/file_system.dart';
 import 'package:flutter_advanced/app/functions.dart';
 import 'package:flutter_advanced/domain/usecase/register_usecase.dart';
 import 'package:flutter_advanced/presentation/base/base_view_model.dart';
@@ -18,6 +18,8 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
       StreamController<File>.broadcast(); // file for picture
   StreamController areAllInputsValidStreamController =
       StreamController<void>.broadcast(); // no data in controller
+
+  StreamController isUserRegisteredSuccessfullyStreamController = StreamController<bool>();
   final RegisterUseCase _registerUseCase;
   var registerObject = RegisterObject("", "", "", "", "", "");
   RegisterViewModel(this._registerUseCase);
@@ -38,12 +40,13 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
     passwordStreamController.close();
     profilePictureStreamController.close();
     areAllInputsValidStreamController.close();
+    isUserRegisteredSuccessfullyStreamController.close();
 
     super.dispose();
   }
 
   @override
-  Sink get inputEmail => userNameStreamController.sink;
+  Sink get inputEmail => emailStreamController.sink;
 
   @override
   Sink get inputMobileNumber => mobileNumberStreamController.sink;
@@ -62,6 +65,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   setUserName(String userName) {
+    inputUserName.add(userName); // update sink of stream controller
     if (_isUserNameValid(userName)) {
       // store register object with data
       registerObject = registerObject.copyWith(userName: userName);
@@ -86,6 +90,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   setEmail(String email) {
+    inputEmail.add(email);
     if (isEmailValid(email)) {
       // store register object with data
       registerObject = registerObject.copyWith(email: email);
@@ -98,6 +103,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   setMobileNumber(String mobileNumber) {
+    inputMobileNumber.add(mobileNumber);
     if (_isMobileNumberValid(mobileNumber)) {
       // store register object with data
       registerObject = registerObject.copyWith(mobileNumber: mobileNumber);
@@ -110,6 +116,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   setPassword(String password) {
+    inputPassword.add(password);
     if (_isPasswordValid(password)) {
       // store register object with data
       registerObject = registerObject.copyWith(password: password);
@@ -122,6 +129,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   setProfilePicture(File profilePicture) {
+    inputProfilePicture.add(profilePicture);
     if (profilePicture.path.isNotEmpty) {
       // store register object with data
       registerObject = registerObject.copyWith(profilePicture: profilePicture.path);
@@ -157,7 +165,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
       },
       (data) {
         inputState.add(ContentState());
-        // isUserLoggedInSuccessfullyStreamController.add(true);
+        isUserRegisteredSuccessfullyStreamController.add(true);
       },
     );
   }
@@ -201,7 +209,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
       .map((isPasswordValid) => isPasswordValid ? null : AppStrings.invalidPassword);
 
   @override
-  Stream<File> get outputIsProfilePictureValid =>
+  Stream<File> get outputProfilePicture =>
       profilePictureStreamController.stream.map((file) => file);
 
   @override
@@ -262,6 +270,6 @@ abstract class RegisterViewModelOutput {
   Stream<String?> get outputErrorEmail;
   Stream<bool> get outputIsPasswordValid;
   Stream<String?> get outputErrorPassword;
-  Stream<File> get outputIsProfilePictureValid;
+  Stream<File> get outputProfilePicture;
   Stream<bool> get outputAreAllInputsValid;
 }
