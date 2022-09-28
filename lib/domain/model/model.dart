@@ -59,14 +59,16 @@ class Store {
   Store(this.id, this.title, this.image);
 }
 
-class HomeData {
+class HomeData // HomeDataResponse
+{
   List<Service> services;
   List<BannerAd> banners;
   List<Store> stores;
   HomeData(this.services, this.banners, this.stores);
 }
 
-class HomeObject {
+class HomeObject // HomeResponse
+{
   HomeData? data;
   HomeObject(this.data);
 }
