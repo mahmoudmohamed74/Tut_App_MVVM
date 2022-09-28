@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter_advanced/domain/model/model.dart';
 import 'package:flutter_advanced/domain/usecase/home_usecase.dart';
 import 'package:flutter_advanced/presentation/base/base_view_model.dart';
+import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer.dart';
+import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:rxdart/rxdart.dart';
 
 class HomeViewModel extends BaseViewModel with HomeViewModelInput, HomeViewModelOutput {
@@ -15,14 +18,34 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInput, HomeViewModel
 // input
   @override
   void start() {
-    // TODO: implement start
+    _getHomeData();
   }
+
   @override
   void dispose() {
     _bannersStreamController.close();
     _servicesStreamController.close();
     _storesStreamController.close();
     super.dispose();
+  }
+
+  _getHomeData() async {
+    inputState.add(
+      LoadingState(stateRendererType: StateRendererType.fullScreenLoadingState),
+    );
+    (await _homeUseCase.execute(Void)).fold(
+      (failure) => {
+        inputState.add(
+          ErrorState(StateRendererType.fullScreenErrorState, failure.message),
+        ),
+      },
+      (homeObject) {
+        inputState.add(ContentState());
+        inputBanners.add(homeObject.data?.banners);
+        inputServices.add(homeObject.data?.services);
+        inputStores.add(homeObject.data?.stores);
+      },
+    );
   }
 
   @override
