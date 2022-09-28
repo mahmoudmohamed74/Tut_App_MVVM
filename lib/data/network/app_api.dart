@@ -29,4 +29,7 @@ abstract class AppServiceClient // handle el API
     @Field("password") String password,
     @Field("profile_picture") String profilePicture,
   );
+
+  @GET("/home")
+  Future<HomeResponse> getHomeData();
 }

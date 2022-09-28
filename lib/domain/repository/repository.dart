@@ -9,7 +9,7 @@ abstract class Repository // declare func
 
   Future<Either<Failure, String>> forgotPassword(String email);
 
-  Future<Either<Failure, Authentication>> register(
-    RegisterRequest registerRequest,
-  );
+  Future<Either<Failure, Authentication>> register(RegisterRequest registerRequest);
+
+  Future<Either<Failure, HomeObject>> getHomeResponse();
 }
