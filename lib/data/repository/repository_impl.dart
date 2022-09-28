@@ -108,11 +108,11 @@ class RepositoryImpl implements Repository {
   }
 
   @override
-  Future<Either<Failure, HomeObject>> getHomeResponse() async {
+  Future<Either<Failure, HomeObject>> getHomeData() async {
     if (await _networkInfo.isConnected) {
       // its connected to internet, its safe to call API
       try {
-        final response = await _remoteDataSource.getHomeResponse();
+        final response = await _remoteDataSource.getHomeData();
 
         if (response.status == ApiInternalStatus.SUCCESS) {
           // success

@@ -11,5 +11,5 @@ abstract class Repository // declare func
 
   Future<Either<Failure, Authentication>> register(RegisterRequest registerRequest);
 
-  Future<Either<Failure, HomeObject>> getHomeResponse();
+  Future<Either<Failure, HomeObject>> getHomeData();
 }
