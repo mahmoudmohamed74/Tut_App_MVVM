@@ -34,36 +34,38 @@ class _HomePageState extends State<HomePage> {
     return Center(
       child: SingleChildScrollView(
         child: StreamBuilder<FlowState>(
-            stream: _viewModel.outputState,
-            builder: (context, snapshot) {
-              return snapshot.data?.getScreenWidget(
-                    context,
-                    _getContentWidget(),
-                    () {
-                      _viewModel.start();
-                    },
-                  ) ??
-                  _getContentWidget();
-            }),
+          stream: _viewModel.outputState,
+          builder: (context, snapshot) {
+            return snapshot.data?.getScreenWidget(
+                  context,
+                  _getContentWidget(),
+                  () {
+                    _viewModel.start();
+                  },
+                ) ??
+                _getContentWidget();
+          },
+        ),
       ),
     );
   }
 
   Widget _getContentWidget() {
     return StreamBuilder<HomeViewObject>(
-        stream: _viewModel.outputHomeData,
-        builder: (context, snapshot) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _getBannerWidget(snapshot.data?.banners),
-              _getSection(AppStrings.services),
-              _getServicesWidget(snapshot.data?.services),
-              _getSection(AppStrings.stores),
-              _getStoresWidget(snapshot.data?.stores),
-            ],
-          );
-        });
+      stream: _viewModel.outputHomeData,
+      builder: (context, snapshot) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _getBannerWidget(snapshot.data?.banners),
+            _getSection(AppStrings.services),
+            _getServicesWidget(snapshot.data?.services),
+            _getSection(AppStrings.stores),
+            _getStoresWidget(snapshot.data?.stores),
+          ],
+        );
+      },
+    );
   }
 
   Widget _getBannerWidget(List<BannerAd>? banners) {
@@ -200,10 +202,7 @@ class _HomePageState extends State<HomePage> {
         right: AppPadding.p12,
         bottom: AppPadding.p2,
       ),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.bodyMedium,
-      ),
+      child: Text(title, style: Theme.of(context).textTheme.bodyMedium),
     );
   }
 
