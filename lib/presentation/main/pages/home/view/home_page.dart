@@ -50,45 +50,42 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getContentWidget() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _getBannersCarousel(),
-        _getSection(AppStrings.services),
-        _getServices(),
-        _getSection(AppStrings.stores),
-        _getStores()
-      ],
-    );
-  }
-
-  Widget _getBannersCarousel() {
-    return StreamBuilder<List<BannerAd>>(
-      stream: _viewModel.outputBanners,
-      builder: (context, snapshot) {
-        return _getBannerWidget(snapshot.data);
-      },
-    );
+    return StreamBuilder<HomeViewObject>(
+        stream: _viewModel.outputHomeData,
+        builder: (context, snapshot) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _getBannerWidget(snapshot.data?.banners),
+              _getSection(AppStrings.services),
+              _getServicesWidget(snapshot.data?.services),
+              _getSection(AppStrings.stores),
+              _getStoresWidget(snapshot.data?.stores),
+            ],
+          );
+        });
   }
 
   Widget _getBannerWidget(List<BannerAd>? banners) {
     if (banners != null) {
       return CarouselSlider(
         items: banners
-            .map((banner) => SizedBox(
-                  width: double.infinity,
-                  child: Card(
-                    elevation: AppSize.s1_5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(AppSize.s12),
-                      side: BorderSide(color: ColorManager.primary, width: AppSize.s1),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(AppSize.s12),
-                      child: Image.network(banner.image, fit: BoxFit.cover),
-                    ),
+            .map(
+              (banner) => SizedBox(
+                width: double.infinity,
+                child: Card(
+                  elevation: AppSize.s1_5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(AppSize.s12),
+                    side: BorderSide(color: ColorManager.primary, width: AppSize.s1),
                   ),
-                ))
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(AppSize.s12),
+                    child: Image.network(banner.image, fit: BoxFit.cover),
+                  ),
+                ),
+              ),
+            )
             .toList(),
         options: CarouselOptions(
           height: AppSize.s190,
@@ -102,14 +99,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  Widget _getServices() {
-    return StreamBuilder<List<Service>>(
-        stream: _viewModel.outputServices,
-        builder: (context, snapshot) {
-          return _getServicesWidget(snapshot.data);
-        });
-  }
-
   Widget _getServicesWidget(List<Service>? services) {
     if (services != null) {
       return Padding(
@@ -120,36 +109,39 @@ class _HomePageState extends State<HomePage> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: services
-                .map((service) => Card(
-                      elevation: AppSize.s4,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(AppSize.s12),
-                        side: BorderSide(color: ColorManager.white, width: AppSize.s1),
-                      ),
-                      child: Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(AppSize.s12),
-                            child: Image.network(
-                              service.image,
-                              fit: BoxFit.cover,
-                              width: AppSize.s120,
-                              height: AppSize.s120,
+                .map(
+                  (service) => Card(
+                    elevation: AppSize.s4,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(AppSize.s12),
+                      side: BorderSide(color: ColorManager.white, width: AppSize.s1),
+                    ),
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(AppSize.s12),
+                          child: Image.network(
+                            service.image,
+                            fit: BoxFit.cover,
+                            width: AppSize.s120,
+                            height: AppSize.s120,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: AppPadding.p8),
+                          child: Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              service.title,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                              textAlign: TextAlign.center,
                             ),
                           ),
-                          Padding(
-                              padding: const EdgeInsets.only(top: AppPadding.p8),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  service.title,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                  textAlign: TextAlign.center,
-                                ),
-                              ))
-                        ],
-                      ),
-                    ))
+                        )
+                      ],
+                    ),
+                  ),
+                )
                 .toList(),
           ),
         ),
@@ -157,14 +149,6 @@ class _HomePageState extends State<HomePage> {
     } else {
       return Container();
     }
-  }
-
-  Widget _getStores() {
-    return StreamBuilder<List<Store>>(
-        stream: _viewModel.outputStores,
-        builder: (context, snapshot) {
-          return _getStoresWidget(snapshot.data);
-        });
   }
 
   Widget _getStoresWidget(List<Store>? stores) {

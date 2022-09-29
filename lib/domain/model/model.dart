@@ -69,6 +69,6 @@ class HomeData // HomeDataResponse
 
 class HomeObject // HomeResponse
 {
-  HomeData? data;
+  HomeData data;
   HomeObject(this.data);
 }
