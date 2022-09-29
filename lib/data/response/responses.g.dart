@@ -75,7 +75,7 @@ Map<String, dynamic> _$ForgotPasswordResponseToJson(ForgotPasswordResponse insta
       'support': instance.support,
     };
 ServiceResponse _$ServiceResponseFromJson(Map<String, dynamic> json) => ServiceResponse(
-      json['id'] as String?,
+      json['id'] as int?,
       json['title'] as String?,
       json['image'] as String?,
     );
@@ -87,21 +87,21 @@ Map<String, dynamic> _$ServiceResponseToJson(ServiceResponse instance) => <Strin
     };
 
 BannersResponse _$BannersResponseFromJson(Map<String, dynamic> json) => BannersResponse(
-      json['id'] as String?,
+      json['id'] as int?,
+      json['link'] as String?,
       json['title'] as String?,
       json['image'] as String?,
-      json['link'] as String?,
     );
 
 Map<String, dynamic> _$BannersResponseToJson(BannersResponse instance) => <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
-      'image': instance.image,
       'link': instance.link,
+      'image': instance.image,
     };
 
 StoreResponse _$StoreResponseFromJson(Map<String, dynamic> json) => StoreResponse(
-      json['id'] as String?,
+      json['id'] as int?,
       json['title'] as String?,
       json['image'] as String?,
     );

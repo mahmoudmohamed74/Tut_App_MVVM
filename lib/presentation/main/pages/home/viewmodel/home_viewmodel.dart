@@ -18,6 +18,7 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInput, HomeViewModel
 // input
   @override
   void start() {
+    // get ui
     _getHomeData();
   }
 
@@ -29,7 +30,8 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInput, HomeViewModel
     super.dispose();
   }
 
-  _getHomeData() async {
+  _getHomeData() async // get API
+  {
     inputState.add(
       LoadingState(stateRendererType: StateRendererType.fullScreenLoadingState),
     );
@@ -49,7 +51,7 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInput, HomeViewModel
   }
 
   @override
-  Sink get inputBanners => throw _bannersStreamController.sink;
+  Sink get inputBanners => _bannersStreamController.sink;
 
   @override
   Sink get inputServices => _servicesStreamController.sink;

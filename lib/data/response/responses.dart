@@ -109,7 +109,7 @@ class HomeDataResponse {
 @JsonSerializable()
 class ServiceResponse extends BaseResponse {
   @JsonKey(name: 'id')
-  String? id;
+  int? id;
   @JsonKey(name: 'title')
   String? title;
   @JsonKey(name: 'image')
@@ -126,7 +126,7 @@ class ServiceResponse extends BaseResponse {
 @JsonSerializable()
 class BannersResponse extends BaseResponse {
   @JsonKey(name: 'id')
-  String? id;
+  int? id;
   @JsonKey(name: 'link')
   String? link;
   @JsonKey(name: 'title')
@@ -145,7 +145,7 @@ class BannersResponse extends BaseResponse {
 @JsonSerializable()
 class StoreResponse extends BaseResponse {
   @JsonKey(name: 'id')
-  String? id;
+  int? id;
   @JsonKey(name: 'title')
   String? title;
   @JsonKey(name: 'image')

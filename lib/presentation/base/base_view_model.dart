@@ -1,19 +1,17 @@
 import 'dart:async';
 
 import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer_impl.dart';
+import 'package:rxdart/rxdart.dart';
 
-abstract class BaseViewModel extends BaseViewModelInputs
-    with BaseViewModelOutputs {
+abstract class BaseViewModel extends BaseViewModelInputs with BaseViewModelOutputs {
   // shared variables and func at any view model
-  final StreamController _inputStreamController =
-      StreamController<FlowState>.broadcast();
+  final StreamController _inputStreamController = BehaviorSubject<FlowState>();
 
   @override
   Sink get inputState => _inputStreamController.sink; // initialize
 
   @override
-  Stream<FlowState> get outputState =>
-      _inputStreamController.stream.map((flowState) => flowState);
+  Stream<FlowState> get outputState => _inputStreamController.stream.map((flowState) => flowState);
 
   @override
   void dispose() {

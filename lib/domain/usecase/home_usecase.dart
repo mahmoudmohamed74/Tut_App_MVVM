@@ -10,7 +10,8 @@ class HomeUseCase implements BaseUseCase<void, HomeObject> {
   HomeUseCase(this._repository);
 
   @override
-  Future<Either<Failure, HomeObject>> execute(void input) async {
-    return await _repository.getHomeData();
+  Future<Either<Failure, HomeObject>> execute(void input) async // trg3 response
+  {
+    return await _repository.getHomeData(); // make API
   }
 }
