@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:flutter/material.dart';
 import 'package:flutter_advanced/presentation/resources/language_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,6 +21,27 @@ class AppPreferences {
     } else {
       // return default language
       return LanguageType.ENGLISH.getValue();
+    }
+  }
+
+  Future<void> changeAppLanguage() async {
+    String currentLang = await getAppLanguage();
+    if (currentLang == LanguageType.ARABIC.getValue()) {
+      // set En
+      _sharedPreferences.setString(PREFS_KEY_LANG, LanguageType.ENGLISH.getValue());
+    } else {
+      // set Ar
+      _sharedPreferences.setString(PREFS_KEY_LANG, LanguageType.ARABIC.getValue());
+    }
+  }
+
+  Future<Locale> getLocal() async {
+    String currentLang = await getAppLanguage();
+
+    if (currentLang == LanguageType.ARABIC.getValue()) {
+      return ARABIC_LOCAL;
+    } else {
+      return ENGLISH_LOCAL;
     }
   }
 
