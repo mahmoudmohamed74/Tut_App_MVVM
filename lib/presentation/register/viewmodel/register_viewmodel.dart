@@ -198,7 +198,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   Stream<String?> get outputErrorMobileNumber => outputIsMobileNumberValid
-      .map((isMobileNumberValid) => isMobileNumberValid ? null : AppStrings.invalidMobileNumber);
+      .map((isMobileNumberValid) => isMobileNumberValid ? null : AppStrings.mobileNumberInvalid);
 
   @override
   Stream<bool> get outputIsPasswordValid =>
@@ -206,7 +206,7 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   Stream<String?> get outputErrorPassword => outputIsPasswordValid
-      .map((isPasswordValid) => isPasswordValid ? null : AppStrings.invalidPassword);
+      .map((isPasswordValid) => isPasswordValid ? null : AppStrings.passwordInvalid);
 
   @override
   Stream<File> get outputProfilePicture =>
