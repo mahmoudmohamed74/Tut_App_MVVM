@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/app/constants.dart';
 import 'package:flutter_advanced/presentation/common/state_renderer/state_renderer.dart';
@@ -18,7 +19,7 @@ class LoadingState extends FlowState {
     String message = AppStrings.loading,
   });
   @override
-  String getMessage() => message ?? AppStrings.loading;
+  String getMessage() => message ?? AppStrings.loading.tr();
 
   @override
   StateRendererType getStateRendererType() => stateRendererType;
@@ -69,8 +70,7 @@ class SuccessState extends FlowState {
   String getMessage() => message;
 
   @override
-  StateRendererType getStateRendererType() =>
-      StateRendererType.popupSuccessState;
+  StateRendererType getStateRendererType() => StateRendererType.popupSuccessState;
 }
 
 extension FlowStateExtension on FlowState {
@@ -151,16 +151,14 @@ extension FlowStateExtension on FlowState {
     }
   }
 
-  _isCurrentDialogShowing(BuildContext context) =>
-      ModalRoute.of(context)?.isCurrent != true;
+  _isCurrentDialogShowing(BuildContext context) => ModalRoute.of(context)?.isCurrent != true;
   dismissDialog(BuildContext context) {
     if (_isCurrentDialogShowing(context)) {
       Navigator.of(context, rootNavigator: true).pop(true);
     }
   }
 
-  showPopup(
-      BuildContext context, StateRendererType stateRendererType, String message,
+  showPopup(BuildContext context, StateRendererType stateRendererType, String message,
       {String title = Constants.empty}) {
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => showDialog(

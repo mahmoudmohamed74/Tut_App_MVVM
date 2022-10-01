@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/presentation/resources/assets_manager.dart';
 import 'package:flutter_advanced/presentation/resources/color_manager.dart';
@@ -56,7 +57,7 @@ class StateRenderer extends StatelessWidget {
           [
             _getAnimatedImage(JsonAssets.error),
             _getMessage(message),
-            _getRetryButton(AppStrings.ok, context),
+            _getRetryButton(AppStrings.ok.tr(), context),
           ],
         );
       case StateRendererType.popupSuccessState:
@@ -66,7 +67,7 @@ class StateRenderer extends StatelessWidget {
             _getAnimatedImage(JsonAssets.success),
             _getMessage(title),
             _getMessage(message),
-            _getRetryButton(AppStrings.ok, context),
+            _getRetryButton(AppStrings.ok.tr(), context),
           ],
         );
       case StateRendererType.fullScreenLoadingState:
@@ -81,7 +82,7 @@ class StateRenderer extends StatelessWidget {
           [
             _getAnimatedImage(JsonAssets.loading),
             _getMessage(message),
-            _getRetryButton(AppStrings.retryAgain, context),
+            _getRetryButton(AppStrings.retryAgain.tr(), context),
           ],
         );
       case StateRendererType.fullScreenEmptyState:
@@ -100,8 +101,7 @@ class StateRenderer extends StatelessWidget {
 
   Widget _getPopUpDialog(BuildContext context, List<Widget> children) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppSize.s14)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSize.s14)),
       elevation: AppSize.s1_5,
       backgroundColor: Colors.transparent,
       child: Container(

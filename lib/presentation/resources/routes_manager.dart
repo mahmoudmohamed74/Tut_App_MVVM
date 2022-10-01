@@ -8,6 +8,7 @@ import 'package:flutter_advanced/presentation/register/view/register_view.dart';
 import 'package:flutter_advanced/presentation/resources/strings_manager.dart';
 import 'package:flutter_advanced/presentation/splash/splash_view.dart';
 import 'package:flutter_advanced/presentation/store_details/view/store_details_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -52,10 +53,10 @@ class RouteGenerator {
     return MaterialPageRoute(
       builder: (_) => Scaffold(
         appBar: AppBar(
-          title: const Text(AppStrings.noRouteFound),
+          title: Text(AppStrings.noRouteFound.tr()),
         ),
-        body: const Center(
-          child: Text(AppStrings.noRouteFound),
+        body: Center(
+          child: Text(AppStrings.noRouteFound.tr()),
         ),
       ),
     );

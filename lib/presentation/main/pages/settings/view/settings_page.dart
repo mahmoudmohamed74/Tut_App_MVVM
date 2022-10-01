@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/app/app_prefs.dart';
 import 'package:flutter_advanced/app/di.dart';
@@ -27,25 +28,27 @@ class _SettingsPageState extends State<SettingsPage> {
         children: [
           ListTile(
             leading: SvgPicture.asset(ImageAssets.changeLangIc),
-            title: Text(AppStrings.changeLanguage, style: Theme.of(context).textTheme.bodyLarge),
+            title:
+                Text(AppStrings.changeLanguage.tr(), style: Theme.of(context).textTheme.bodyLarge),
             trailing: SvgPicture.asset(ImageAssets.rightArrowSettingsIc),
             onTap: () {},
           ),
           ListTile(
             leading: SvgPicture.asset(ImageAssets.contactUsIc),
-            title: Text(AppStrings.contactUs, style: Theme.of(context).textTheme.bodyLarge),
+            title: Text(AppStrings.contactUs.tr(), style: Theme.of(context).textTheme.bodyLarge),
             trailing: SvgPicture.asset(ImageAssets.rightArrowSettingsIc),
             onTap: () {},
           ),
           ListTile(
             leading: SvgPicture.asset(ImageAssets.inviteFriendsIc),
-            title: Text(AppStrings.inviteYourFriends, style: Theme.of(context).textTheme.bodyLarge),
+            title: Text(AppStrings.inviteYourFriends.tr(),
+                style: Theme.of(context).textTheme.bodyLarge),
             trailing: SvgPicture.asset(ImageAssets.rightArrowSettingsIc),
             onTap: () {},
           ),
           ListTile(
             leading: SvgPicture.asset(ImageAssets.logoutIc),
-            title: Text(AppStrings.logout, style: Theme.of(context).textTheme.bodyLarge),
+            title: Text(AppStrings.logout.tr(), style: Theme.of(context).textTheme.bodyLarge),
             trailing: SvgPicture.asset(ImageAssets.rightArrowSettingsIc),
             onTap: () {
               _logout();

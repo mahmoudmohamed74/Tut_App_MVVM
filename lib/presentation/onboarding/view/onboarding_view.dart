@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_advanced/app/app_prefs.dart';
@@ -57,8 +58,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           backgroundColor: ColorManager.white,
           elevation: AppSize.s0,
           systemOverlayStyle: SystemUiOverlayStyle(
-              statusBarColor: ColorManager.white,
-              statusBarBrightness: Brightness.dark),
+              statusBarColor: ColorManager.white, statusBarBrightness: Brightness.dark),
         ),
         body: PageView.builder(
           controller: _pageController,
@@ -82,7 +82,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                   AppStrings.skip,
                   textAlign: TextAlign.end,
                   style: Theme.of(context).textTheme.titleMedium,
-                ),
+                ).tr(),
                 onPressed: () {
                   Navigator.pushReplacementNamed(context, Routes.loginRoute);
                 },

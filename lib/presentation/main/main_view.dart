@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/presentation/main/pages/home/view/home_page.dart';
 import 'package:flutter_advanced/presentation/main/pages/notifications/view/notifications_page.dart';
@@ -22,12 +23,12 @@ class _MainViewState extends State<MainView> {
     const SettingsPage(),
   ];
   List<String> titles = [
-    AppStrings.home,
-    AppStrings.search,
-    AppStrings.notifications,
-    AppStrings.settings,
+    AppStrings.home.tr(),
+    AppStrings.search.tr(),
+    AppStrings.notifications.tr(),
+    AppStrings.settings.tr(),
   ];
-  var _title = AppStrings.home;
+  var _title = AppStrings.home.tr();
   var _currentIndex = 0;
 
   @override
@@ -49,13 +50,15 @@ class _MainViewState extends State<MainView> {
           unselectedItemColor: ColorManager.grey,
           currentIndex: _currentIndex,
           onTap: onTap,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: AppStrings.home),
-            BottomNavigationBarItem(icon: Icon(Icons.search_outlined), label: AppStrings.search),
+          items: [
             BottomNavigationBarItem(
-                icon: Icon(Icons.notifications), label: AppStrings.notifications),
+                icon: const Icon(Icons.home_outlined), label: AppStrings.home.tr()),
             BottomNavigationBarItem(
-                icon: Icon(Icons.settings_suggest_outlined), label: AppStrings.settings),
+                icon: const Icon(Icons.search_outlined), label: AppStrings.search.tr()),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.notifications), label: AppStrings.notifications.tr()),
+            BottomNavigationBarItem(
+                icon: const Icon(Icons.settings_suggest_outlined), label: AppStrings.settings.tr()),
           ],
         ),
       ),
