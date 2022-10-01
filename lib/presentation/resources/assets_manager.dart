@@ -14,6 +14,11 @@ class ImageAssets {
   static const String leftArrowIc = "$imagesPath/left_arrow_ic.svg";
   static const String rightArrowIc = "$imagesPath/right_arrow_ic.svg";
   static const String photoCameraIc = "$imagesPath/photo_camera_ic.svg";
+  static const String changeLangIc = "$imagesPath/change_lang_ic.svg";
+  static const String contactUsIc = "$imagesPath/contact_us_ic.svg";
+  static const String inviteFriendsIc = "$imagesPath/invite_friends_ic.svg";
+  static const String logoutIc = "$imagesPath/logout_ic.svg";
+  static const String rightArrowSettingsIc = "$imagesPath/right_arrow_settings_ic.svg";
 }
 
 class JsonAssets {
