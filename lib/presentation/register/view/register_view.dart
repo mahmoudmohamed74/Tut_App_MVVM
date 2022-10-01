@@ -50,18 +50,16 @@ class _RegisterViewState extends State<RegisterView> {
     _mobileNumberEditingController.addListener(
       () => _viewModel.setMobileNumber(_mobileNumberEditingController.text),
     );
-    _viewModel.isUserRegisteredSuccessfullyStreamController.stream.listen(
-      (isRegistered) {
-        if (isRegistered) {
-          SchedulerBinding.instance.addPostFrameCallback(
-            (_) {
-              _appPreferences.setUserLoggedIn();
-              Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
-            },
-          );
-        }
-      },
-    );
+       _viewModel.isUserRegisteredSuccessfullyStreamController.stream
+        .listen((isLoggedIn) {
+      if (isLoggedIn) {
+        // navigate to main screen
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          _appPreferences.setUserLoggedIn();
+          Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+        });
+      }
+    });
   }
 
   @override
@@ -355,12 +353,13 @@ class _RegisterViewState extends State<RegisterView> {
         children: [
           Flexible(child: Text(AppStrings.profilePicture.tr())),
           Flexible(
-              child: StreamBuilder<File>(
-            stream: _viewModel.outputProfilePicture,
-            builder: (context, snapshot) {
-              return _imagePicketByUser(snapshot.data);
-            },
-          )),
+            child: StreamBuilder<File>(
+              stream: _viewModel.outputProfilePicture,
+              builder: (context, snapshot) {
+                return _imagePicketByUser(snapshot.data);
+              },
+            ),
+          ),
           Flexible(child: SvgPicture.asset(ImageAssets.photoCameraIc))
         ],
       ),
