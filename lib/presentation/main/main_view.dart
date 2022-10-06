@@ -17,10 +17,10 @@ class MainView extends StatefulWidget {
 
 class _MainViewState extends State<MainView> {
   List<Widget> pages = [
-    const HomePage(),
-    const SearchPage(),
-    const NotificationsPage(),
-    const SettingsPage(),
+    HomePage(),
+    SearchPage(),
+    NotificationsPage(),
+    SettingsPage(),
   ];
   List<String> titles = [
     AppStrings.home.tr(),

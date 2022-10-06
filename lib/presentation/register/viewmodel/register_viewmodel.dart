@@ -35,6 +35,8 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
 
   @override
   void dispose() {
+    super.dispose();
+
     userNameStreamController.close();
     mobileNumberStreamController.close();
     emailStreamController.close();
@@ -42,8 +44,6 @@ class RegisterViewModel extends BaseViewModel with RegisterViewModelInput, Regis
     profilePictureStreamController.close();
     areAllInputsValidStreamController.close();
     isUserRegisteredSuccessfullyStreamController.close();
-
-    super.dispose();
   }
 
   @override

@@ -106,13 +106,9 @@ initRegisterModule() {
 
 initHomeModule() {
   if (!GetIt.I.isRegistered<HomeUseCase>()) {
-    instance.registerFactory<HomeUseCase>(
-      () => HomeUseCase(instance()),
-    );
+    instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
 
-    instance.registerFactory<HomeViewModel>(
-      () => HomeViewModel(instance()),
-    );
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance()));
   }
 }
 

@@ -13,8 +13,8 @@ import 'package:easy_localization/easy_localization.dart';
 class Routes {
   static const String splashRoute = "/";
   static const String loginRoute = "/login";
-  static const String onBoardingRoute = "/onBoarding";
   static const String registerRoute = "/register";
+  static const String onBoardingRoute = "/onBoarding";
   static const String forgotPasswordRoute = "/forgotPassword";
   static const String mainRoute = "/main";
   static const String storeDetailsRoute = "/storeDetails";

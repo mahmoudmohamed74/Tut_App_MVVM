@@ -20,13 +20,6 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInput, HomeViewModel
     _getHomeData();
   }
 
-  @override
-  void dispose() {
-    _dataStreamController.close();
-
-    super.dispose();
-  }
-
   _getHomeData() async // get API
   {
     inputState.add(
@@ -49,6 +42,13 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInput, HomeViewModel
         );
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _dataStreamController.close();
+
+    super.dispose();
   }
 
   @override
